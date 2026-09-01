@@ -202,6 +202,8 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
   }
   :focus-visible{
     outline: 2px solid var(--gold);
@@ -216,6 +218,8 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: rgba(232, 201, 58, 0.1);
+    overflow-x: hidden;
+    width: 100%;
   }
   img, svg{ 
     display: block; 
@@ -659,6 +663,58 @@
   .testimonials-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   @media (max-width:900px){ .testimonials-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:600px){ .testimonials-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- STATS (measurable results) ---------- */
+  /* Below the breakpoint, three fixed-width cards no longer fit the
+     viewport. Rather than let them overflow and get clipped (or crush
+     down illegibly), the row scrolls horizontally on its own so every
+     card stays fully readable at full size. */
+  .stats-scroll{
+    position:relative;
+    margin-top:34px;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;
+    scrollbar-color:var(--muted-2) transparent;
+    padding-bottom:10px;
+    margin-bottom:-10px;
+    /* Fades the right edge so an unscrolled card reads as "more content
+       this way" rather than looking like it's simply been cut off. */
+    mask-image:linear-gradient(to right, black 0%, black 88%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to right, black 0%, black 88%, transparent 100%);
+  }
+  .stats-scroll::-webkit-scrollbar{ height:6px; }
+  .stats-scroll::-webkit-scrollbar-track{ background:transparent; }
+  .stats-scroll::-webkit-scrollbar-thumb{ background:var(--line); border-radius:999px; }
+  .stats-grid{ display:flex; gap:24px; }
+  .stat-card{
+    flex:0 0 auto;
+    width:250px;
+    scroll-snap-align:start;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:28px;
+  }
+  .stat-card h3{ font-size:32px; margin:0 0 10px; }
+  .stat-card p{ color:var(--muted); font-size:14px; margin:0; }
+  .stats-hint{ display:none; }
+  @media (max-width:759px){
+    .stats-hint{
+      display:block;
+      margin-top:12px;
+      font-size:12.5px;
+      color:var(--muted-2);
+      text-align:right;
+    }
+  }
+  @media (min-width:760px){
+    .stats-scroll{ overflow-x:visible; mask-image:none; -webkit-mask-image:none; }
+    .stats-grid{ display:grid; grid-template-columns:repeat(3,1fr); }
+    .stat-card{ width:auto; }
+  }
   .testimonial-card{
     background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
     padding:30px 28px; display:flex; flex-direction:column;
@@ -790,18 +846,6 @@
     border:1px solid var(--line);
     overflow:hidden;
   }
-  .avatar{
-  width:200px; height:200px; border-radius:50%; flex:none;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces', serif; font-weight:600; font-size:20px;
-  background:linear-gradient(155deg, var(--gold-dim), var(--teal-dim));
-  border:1px solid var(--line);
-  overflow:hidden;
-  @media (max-width:600px){
-  .avatar{ width:120px; height:120px; }
-}
-
-}
   .founder h4{ font-size:16px; margin-bottom:3px; }
   .founder p{ margin:0; color:var(--muted); font-size:13.3px; }
   .team-note{
@@ -1158,20 +1202,23 @@
         <p class="eyebrow" data-en="Measurable results" data-sw="Matokeo Yanayoweza Kupimwa">Measurable results</p>
         <h2 data-en="Real impact from real builds" data-sw="Matokeo Ya Kweli Kutoka Kwa Ujenzi Halisi">Real impact from real builds</h2>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:34px;">
-        <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:28px;">
-          <h3 style="font-size:32px; margin:0 0 10px; color:var(--gold);">+340%</h3>
-          <p style="color:var(--muted); font-size:14px; margin:0;" data-en="Average increase in monthly inquiries within 3 months of launch" data-sw="Wastani wa ongezeko la asilimia katika maswali kila mwezi ndani ya miezi 3 ya uzinduzi">Average increase in monthly inquiries within 3 months</p>
-        </div>
-        <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:28px;">
-          <h3 style="font-size:32px; margin:0 0 10px; color:var(--teal);">92+</h3>
-          <p style="color:var(--muted); font-size:14px; margin:0;" data-en="Average PageSpeed Insights score at launch" data-sw="Wastani wa alama za PageSpeed papo hapo">Average PageSpeed Insights score at launch</p>
-        </div>
-        <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:28px;">
-          <h3 style="font-size:32px; margin:0 0 10px; color:var(--gold);">0</h3>
-          <p style="color:var(--muted); font-size:14px; margin:0;" data-en="Days late on delivery · Every project ships on the promised date" data-sw="Siku za kuchelewa · Kila mradi unakuja kwa tarehe iliyoahidiwa">Days late on delivery · Every project ships on time</p>
+      <div class="stats-scroll">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3 style="color:var(--gold);">+340%</h3>
+            <p data-en="Average increase in monthly inquiries within 3 months of launch" data-sw="Wastani wa ongezeko la asilimia katika maswali kila mwezi ndani ya miezi 3 ya uzinduzi">Average increase in monthly inquiries within 3 months</p>
+          </div>
+          <div class="stat-card">
+            <h3 style="color:var(--teal);">92+</h3>
+            <p data-en="Average PageSpeed Insights score at launch" data-sw="Wastani wa alama za PageSpeed papo hapo">Average PageSpeed Insights score at launch</p>
+          </div>
+          <div class="stat-card">
+            <h3 style="color:var(--gold);">0</h3>
+            <p data-en="Days late on delivery · Every project ships on the promised date" data-sw="Siku za kuchelewa · Kila mradi unakuja kwa tarehe iliyoahidiwa">Days late on delivery · Every project ships on time</p>
+          </div>
         </div>
       </div>
+      <p class="stats-hint" data-en="Swipe to see all results →" data-sw="Telezesha kuona matokeo yote →">Swipe to see all results →</p>
     </div>
   </section>
   <section id="pricing">
@@ -1227,7 +1274,7 @@
           <p class="tier-name" data-en="PRO" data-sw="PRO">PRO</p>
           <h3 data-en="Operations" data-sw="Uendeshaji">Operations</h3>
           <p class="who" data-en="For a business with more moving parts — bookings, sales, or inventory to run." data-sw="Kwa biashara yenye shughuli nyingi zaidi — miadi, mauzo, au bidhaa za kusimamia.">For a business with more moving parts — bookings, sales, or inventory to run.</p>
-          <div class="price">1,800,000+ <small>TZS</small></div>
+          <div class="price">1,800,000 <small>TZS</small></div>
           <p class="price-note" data-en="One-time · delivered in 10 working days · VAT inclusive" data-sw="Malipo mara moja · uwasilishaji ndani ya siku 10 · VAT imejumuishwa">One-time · delivered in 10 working days · VAT inclusive</p>
           <ul class="feature-list">
             <li data-en="Everything in Growth" data-sw="Kila kitu kilichopo Growth">Everything in Growth</li>
