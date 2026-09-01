@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /private/
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+Request-rate: 30/1m
+
+Sitemap: https://digidocsofficial.com/sitemap.xml

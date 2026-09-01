@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Website Audit Checklist / Orodha ya Ukaguzi wa Tovuti</title>
+<style>
+  :root{
+    --ink:#0d0d0e;
+    --paper:#0d0d0e;
+    --panel:#1a1a1d;
+    --line: rgba(244,242,234,0.10);
+    --text:#f4f2ea;
+    --muted:#a6a49a;
+    --muted-2:#78766d;
+    --signal:#e8c93a;
+    --signal-soft: rgba(232,201,58,0.14);
+    --ok:#2f8a78;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', -apple-system, 'Segoe UI', sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:48px 24px 80px;}
+
+  /* header / toggle */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:16px;
+    border-bottom:2px solid var(--signal);
+    padding-bottom:20px;
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  .eyebrow{
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--signal);
+    margin:0 0 6px;
+  }
+  h1{
+    font-size:clamp(28px,4vw,40px);
+    margin:0;
+    letter-spacing:-0.01em;
+    font-weight:800;
+    color:var(--text);
+  }
+  .lang-toggle{
+    display:flex;
+    border:1px solid var(--line);
+    border-radius:999px;
+    overflow:hidden;
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size:13px;
+    font-weight:600;
+    flex-shrink:0;
+  }
+  .lang-toggle button{
+    border:none;
+    background:transparent;
+    color:var(--muted);
+    padding:9px 18px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .lang-toggle button.active{
+    background:var(--signal);
+    color:#141200;
+  }
+  .lang-toggle button:not(.active):hover{
+    background:var(--signal-soft);
+  }
+
+  /* section blocks */
+  section{margin-bottom:40px;}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .sec-num{
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    color:var(--signal);
+    font-weight:700;
+    font-size:14px;
+  }
+  h2{
+    font-size:19px;
+    margin:0;
+    font-weight:700;
+    color:var(--text);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .item{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--signal);
+    border-radius:6px;
+    padding:13px 16px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .item input[type=checkbox]{
+    margin-top:3px;
+    width:16px;
+    height:16px;
+    accent-color:var(--signal);
+    flex-shrink:0;
+  }
+  .item label{
+    font-size:15px;
+    cursor:pointer;
+    color:var(--text);
+  }
+  .item.checked{
+    border-left-color:var(--ok);
+    background:rgba(47,138,120,0.1);
+  }
+  .item.checked label{
+    text-decoration:line-through;
+    opacity:.6;
+  }
+
+  .workflow{
+    background:var(--panel);
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px 26px;
+  }
+  .workflow h2{color:var(--text);}
+  .workflow ol{
+    margin:12px 0 0;
+    padding-left:22px;
+  }
+  .workflow li{margin-bottom:8px;font-size:15px;color:var(--text);}
+  .workflow li::marker{
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    color:var(--signal);
+    font-weight:700;
+  }
+
+  .footer-note{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size:12px;
+    color:var(--muted-2);
+  }
+
+  .tool-footer{
+    margin-top:60px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+    background:var(--ink);
+    text-align:center;
+  }
+  .tool-footer p{
+    margin:0 0 16px;
+    color:var(--text);
+    font-size:14px;
+  }
+  .tool-footer .cta-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    background:var(--signal);
+    color:#141200;
+    border-radius:6px;
+    font-weight:600;
+    font-size:14px;
+    transition:background 0.2s ease;
+    text-decoration:none;
+  }
+  .tool-footer .cta-link:hover{
+    background:#f0d451;
+  }
+
+  .welcome-banner{
+    background:linear-gradient(135deg, rgba(232,201,58,0.08), rgba(47,138,120,0.06));
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:36px 32px;
+    margin-bottom:40px;
+    text-align:center;
+  }
+  .welcome-banner h2{
+    font-size:clamp(24px,3vw,32px);
+    margin:0 0 12px;
+    color:var(--text);
+  }
+  .welcome-banner p{
+    font-size:15px;
+    color:var(--muted);
+    line-height:1.7;
+    max-width:70ch;
+    margin:0 auto;
+  }
+
+  [data-i18n]{transition:opacity .12s ease;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="eyebrow" data-i18n="eyebrow">Prospecting Tool</p>
+      <h1 data-i18n="title">Website Audit Checklist</h1>
+    </div>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-sw" onclick="setLang('sw')">SW</button>
+    </div>
+  </header>
+
+  <div class="welcome-banner">
+    <h2 data-i18n="welcome-title">Welcome to Your Website Audit</h2>
+    <p data-i18n="welcome-desc">Discover what defects, weaknesses, and opportunities your website has. Use this checklist to review your site across five critical areas — then see how a professional redesign can transform it.</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><h2 data-i18n="s1-title">Technical &amp; Performance</h2></div>
+    <div class="grid">
+      <div class="item"><input type="checkbox"><label data-i18n="s1-1">Slow load times (check PageSpeed Insights or GTmetrix — over 3–4 seconds is a strong signal)</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s1-2">Not mobile-responsive, or mobile layout is broken/clunky</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s1-3">No HTTPS/SSL (browser shows "Not Secure")</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s1-4">Broken links, 404 errors, missing images</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s1-5">Outdated CMS or plugins (check tech stack with BuiltWith/Wappalyzer)</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s1-6">Console errors visible in browser dev tools</label></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><h2 data-i18n="s2-title">Design &amp; UX</h2></div>
+    <div class="grid">
+      <div class="item"><input type="checkbox"><label data-i18n="s2-1">Dated visual style: small fonts, drop shadows, stock clipart, low-res images</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s2-2">Cluttered layout, inconsistent spacing/colors, weak visual hierarchy</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s2-3">Confusing navigation or too many menu items</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s2-4">No clear call-to-action, or CTAs buried below the fold</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s2-5">Autoplay music or video</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s2-6">Intrusive popups that are hard to close</label></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><h2 data-i18n="s3-title">Content</h2></div>
+    <div class="grid">
+      <div class="item"><input type="checkbox"><label data-i18n="s3-1">Old copyright date in the footer</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s3-2">Blog/news section not updated in over a year</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s3-3">Outdated info: old pricing, discontinued products, dead social links</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s3-4">No clear value proposition on the homepage</label></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2 data-i18n="s4-title">SEO &amp; Discoverability</h2></div>
+    <div class="grid">
+      <div class="item"><input type="checkbox"><label data-i18n="s4-1">Missing or generic meta titles/descriptions</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s4-2">No schema markup</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s4-3">Poor Google rankings for obvious branded/service terms</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s4-4">No Google Business Profile integration or reviews shown</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s4-5">Low domain authority (check with Ahrefs/Moz free tools)</label></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="s5-title">Conversion &amp; Business Signals</h2></div>
+    <div class="grid">
+      <div class="item"><input type="checkbox"><label data-i18n="s5-1">No clear contact form, or forms that don't work</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s5-2">No analytics/tracking installed (check for GA/GTM with Wappalyzer)</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s5-3">No social proof: testimonials, reviews, case studies</label></div>
+      <div class="item"><input type="checkbox"><label data-i18n="s5-4">Site doesn't match current branding used on social media</label></div>
+    </div>
+  </section>
+
+  <section class="workflow">
+    <h2 data-i18n="wf-title">Quick Audit Workflow</h2>
+    <ol>
+      <li data-i18n="wf-1">Load the site on both desktop and mobile</li>
+      <li data-i18n="wf-2">Run PageSpeed Insights and check for HTTPS</li>
+      <li data-i18n="wf-3">View page source for meta tags and tech stack</li>
+      <li data-i18n="wf-4">Check footer date and blog/news freshness</li>
+      <li data-i18n="wf-5">Try filling out any contact form</li>
+      <li data-i18n="wf-6">Compare the site to 2–3 competitors' sites</li>
+    </ol>
+  </section>
+
+  <p class="footer-note" data-i18n="footer">Tick items as you go — the more boxes checked, the stronger the case for a remodel.</p>
+
+  <div class="tool-footer">
+    <p><span data-i18n="footer-from">This free audit tool is a resource from</span> <strong>DigiDocs</strong></p>
+    <p data-i18n="footer-about">We help Tanzanian businesses get professional, mobile-ready websites built in 5 working days.</p>
+    <a href="index.html" class="cta-link" data-i18n="footer-link">See our services →</a>
+  </div>
+
+</div>
+
+<script>
+const translations = {
+  en: {
+    eyebrow: "Prospecting Tool",
+    title: "Website Audit Checklist",
+    "welcome-title": "Welcome to Your Website Audit",
+    "welcome-desc": "Discover what defects, weaknesses, and opportunities your website has. Use this checklist to review your site across five critical areas — then see how a professional redesign can transform it.",
+    "s1-title": "Technical &amp; Performance",
+    "s1-1": "Slow load times (check PageSpeed Insights or GTmetrix — over 3–4 seconds is a strong signal)",
+    "s1-2": "Not mobile-responsive, or mobile layout is broken/clunky",
+    "s1-3": 'No HTTPS/SSL (browser shows "Not Secure")',
+    "s1-4": "Broken links, 404 errors, missing images",
+    "s1-5": "Outdated CMS or plugins (check tech stack with BuiltWith/Wappalyzer)",
+    "s1-6": "Console errors visible in browser dev tools",
+    "s2-title": "Design &amp; UX",
+    "s2-1": "Dated visual style: small fonts, drop shadows, stock clipart, low-res images",
+    "s2-2": "Cluttered layout, inconsistent spacing/colors, weak visual hierarchy",
+    "s2-3": "Confusing navigation or too many menu items",
+    "s2-4": "No clear call-to-action, or CTAs buried below the fold",
+    "s2-5": "Autoplay music or video",
+    "s2-6": "Intrusive popups that are hard to close",
+    "s3-title": "Content",
+    "s3-1": "Old copyright date in the footer",
+    "s3-2": "Blog/news section not updated in over a year",
+    "s3-3": "Outdated info: old pricing, discontinued products, dead social links",
+    "s3-4": "No clear value proposition on the homepage",
+    "s4-title": "SEO &amp; Discoverability",
+    "s4-1": "Missing or generic meta titles/descriptions",
+    "s4-2": "No schema markup",
+    "s4-3": "Poor Google rankings for obvious branded/service terms",
+    "s4-4": "No Google Business Profile integration or reviews shown",
+    "s4-5": "Low domain authority (check with Ahrefs/Moz free tools)",
+    "s5-title": "Conversion &amp; Business Signals",
+    "s5-1": "No clear contact form, or forms that don't work",
+    "s5-2": "No analytics/tracking installed (check for GA/GTM with Wappalyzer)",
+    "s5-3": "No social proof: testimonials, reviews, case studies",
+    "s5-4": "Site doesn't match current branding used on social media",
+    "wf-title": "Quick Audit Workflow",
+    "wf-1": "Load the site on both desktop and mobile",
+    "wf-2": "Run PageSpeed Insights and check for HTTPS",
+    "wf-3": "View page source for meta tags and tech stack",
+    "wf-4": "Check footer date and blog/news freshness",
+    "wf-5": "Try filling out any contact form",
+    "wf-6": "Compare the site to 2–3 competitors' sites",
+    footer: "Tick items as you go — the more boxes checked, the stronger the case for a remodel.",
+    "footer-from": "This free audit tool is a resource from",
+    "footer-about": "We help Tanzanian businesses get professional, mobile-ready websites built in 5 working days.",
+    "footer-link": "See our services →"
+  },
+  sw: {
+    eyebrow: "Zana ya Kutafuta Wateja",
+    title: "Orodha ya Kukagua Tovuti",
+    "welcome-title": "Karibu kwenye Ukaguzi wa Tovuti Yako",
+    "welcome-desc": "Gundua matatizo, dhaifu, na furaha ambazo tovuti yako ina. Tumia orodha hii kukaguza tovuti yako kwa maeneo matano muhimu — kisha ona jinsi kubuni upya kwa uzamili kunaweza kuibadilisha.",
+    "s1-title": "Ufundi na Utendaji",
+    "s1-1": "Tovuti inapakia polepole (angalia kwa PageSpeed Insights au GTmetrix — zaidi ya sekunde 3–4 ni dalili kubwa)",
+    "s1-2": "Haifanyi kazi vizuri kwenye simu, au muundo wa simu umeharibika",
+    "s1-3": 'Haina HTTPS/SSL (kivinjari kinaonyesha "Not Secure")',
+    "s1-4": "Viungo vilivyoharibika, hitilafu za 404, picha zilizokosekana",
+    "s1-5": "Mfumo wa CMS au programu-jalizi za zamani (angalia teknolojia kwa BuiltWith/Wappalyzer)",
+    "s1-6": "Hitilafu za console zinaonekana kwenye dev tools za kivinjari",
+    "s2-title": "Muundo na Uzoefu wa Mtumiaji (UX)",
+    "s2-1": "Mtindo wa zamani: fonti ndogo, vivuli vizito, picha za stock, picha za ubora wa chini",
+    "s2-2": "Mpangilio uliojaa vitu, nafasi/rangi zisizolingana, hakuna mpangilio wa wazi",
+    "s2-3": "Menyu ya kuchanganya au yenye vipengele vingi mno",
+    "s2-4": "Hakuna wito wazi wa kuchukua hatua (CTA), au CTA zimefichwa chini kabisa",
+    "s2-5": "Muziki au video inayocheza yenyewe bila ruhusa",
+    "s2-6": "Madirisha ibukizi yanayosumbua na magumu kufunga",
+    "s3-title": "Maudhui",
+    "s3-1": "Tarehe ya hakimiliki ya zamani chini ya ukurasa",
+    "s3-2": "Sehemu ya blogu/habari haijasasishwa kwa zaidi ya mwaka mmoja",
+    "s3-3": "Taarifa za zamani: bei za zamani, bidhaa zilizoondolewa, viungo vya mitandao ya kijamii visivyofanya kazi",
+    "s3-4": "Hakuna thamani ya huduma inayoonekana wazi kwenye ukurasa wa mwanzo",
+    "s4-title": "SEO na Uonekanaji",
+    "s4-1": "Vichwa/maelezo ya meta yamekosekana au ni ya jumla mno",
+    "s4-2": "Hakuna schema markup",
+    "s4-3": "Nafasi mbaya kwenye Google kwa maneno ya biashara/huduma yao wenyewe",
+    "s4-4": "Hakuna muunganiko wa Google Business Profile au maoni ya wateja",
+    "s4-5": "Uwezo mdogo wa kikoa (domain authority) — angalia kwa Ahrefs/Moz",
+    "s5-title": "Dalili za Mauzo na Biashara",
+    "s5-1": "Hakuna fomu ya mawasiliano iliyo wazi, au fomu hazifanyi kazi",
+    "s5-2": "Hakuna analytics/ufuatiliaji uliowekwa (angalia GA/GTM kwa Wappalyzer)",
+    "s5-3": "Hakuna ushahidi wa kijamii: maoni ya wateja, tathmini, mifano ya kazi",
+    "s5-4": "Tovuti haifanani na chapa inayotumika kwenye mitandao ya kijamii",
+    "wf-title": "Hatua za Haraka za Ukaguzi",
+    "wf-1": "Fungua tovuti kwenye kompyuta na simu",
+    "wf-2": "Fanya PageSpeed Insights na angalia HTTPS",
+    "wf-3": "Angalia msimbo wa ukurasa (page source) kwa meta tags na teknolojia",
+    "wf-4": "Angalia tarehe chini ya ukurasa na usasishaji wa blogu/habari",
+    "wf-5": "Jaribu kujaza fomu yoyote ya mawasiliano",
+    "wf-6": "Linganisha tovuti na tovuti 2–3 za washindani",
+    footer: "Weka alama unapoendelea — kadiri visanduku vinavyojazwa, ndivyo hoja ya kubadilisha tovuti inavyokuwa na nguvu zaidi.",
+    "footer-from": "Zana hii ya bure ya ukaguzi ni rasilimali kutoka kwa",
+    "footer-about": "Tunatuwezesha biashara za Mtanzania kupata tovuti za uzamili, ambazo zina simu, zinajengwa ndani ya siku 5 za kazi.",
+    "footer-link": "Tazama huduma zetu →"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key] !== undefined){
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-sw').classList.toggle('active', lang==='sw');
+  document.documentElement.lang = lang;
+}
+
+document.querySelectorAll('.item').forEach(item=>{
+  const cb = item.querySelector('input[type=checkbox]');
+  cb.addEventListener('change', ()=> item.classList.toggle('checked', cb.checked));
+});
+</script>
+</body>
+</html>
