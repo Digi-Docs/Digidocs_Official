@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Website Audit Checklist / Orodha ya Ukaguzi wa Tovuti</title>
 <style>
   :root{
@@ -214,6 +215,35 @@
   }
 
   [data-i18n]{transition:opacity .12s ease;}
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:600px){
+    .wrap{padding:32px 18px 60px;}
+    header{padding-bottom:16px;margin-bottom:28px;}
+    .eyebrow{font-size:11px;}
+    h1{font-size:clamp(24px,7vw,32px);}
+    .lang-toggle{font-size:13px;}
+    .lang-toggle button{padding:8px 15px;}
+
+    .welcome-banner{padding:26px 20px;margin-bottom:32px;}
+    .welcome-banner h2{font-size:clamp(20px,6vw,26px);}
+    .welcome-banner p{font-size:15px;line-height:1.65;}
+
+    section{margin-bottom:32px;}
+    .sec-num{font-size:13px;}
+    h2{font-size:18px;}
+
+    .item{padding:14px 15px;gap:11px;}
+    .item input[type=checkbox]{width:19px;height:19px;}
+    .item label{font-size:15.5px;line-height:1.5;}
+
+    .workflow{padding:20px 18px;}
+    .workflow li{font-size:15px;line-height:1.55;}
+
+    .tool-footer p{font-size:14.5px;}
+    .tool-footer .cta-link{width:100%;justify-content:center;padding:14px 20px;}
+    .footer-note{font-size:12.5px;}
+  }
 </style>
 </head>
 <body>
