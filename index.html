@@ -660,6 +660,29 @@
   .section-head h2{ font-size:clamp(28px,3.4vw,38px); margin-bottom:14px; }
   .section-head p{ color:var(--muted); font-size:16px; margin:0; }
 
+  /* ---------- SECTORS ---------- */
+  .sectors-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:900px){ .sectors-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:600px){ .sectors-grid{ grid-template-columns:1fr; } }
+  .sector-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:28px; display:flex; flex-direction:column; transition:border-color .2s ease, transform .2s ease;
+  }
+  .sector-card:hover{ border-color:rgba(232,201,58,0.35); transform:translateY(-2px); }
+  .sector-icon{
+    width:46px; height:46px; border-radius:var(--radius-s); flex:none; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(155deg, var(--gold-dim), var(--teal-dim));
+    border:1px solid var(--line);
+  }
+  .sector-card h4{ font-size:16.5px; margin:0 0 8px; color:var(--text); }
+  .sector-card p{ color:var(--muted); font-size:14px; line-height:1.6; margin:0 0 14px; }
+  .sector-card .sector-note{
+    color:var(--muted-2); font-size:12.5px; line-height:1.6; margin:0;
+    padding-top:14px; border-top:1px solid var(--line);
+  }
+  .sectors-footnote{ color:var(--muted-2); font-size:13px; margin-top:28px; text-align:center; }
+
   /* ---------- TESTIMONIALS ---------- */
   .testimonials-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   @media (max-width:900px){ .testimonials-grid{ grid-template-columns:1fr 1fr; } }
@@ -935,6 +958,7 @@
         </a>
       </li>
       <li><a href="#work" data-en="Work" data-sw="Kazi Zetu">Work</a></li>
+      <li><a href="#sectors" data-en="Sectors" data-sw="Sekta">Sectors</a></li>
       <li><a href="#mission" data-en="About" data-sw="Kuhusu Sisi">About</a></li>
       <li><a href="#pricing" data-en="Pricing" data-sw="Bei">Pricing</a></li>
       <li><a href="#process" data-en="Process" data-sw="Mchakato">Process</a></li>
@@ -1122,6 +1146,75 @@
     </div>
   </section>
 
+  <!-- SECTORS WE WORK IN -->
+  <section id="sectors">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-en="Where we work" data-sw="Sekta Tunazofanyia Kazi">Where we work</p>
+        <h2 data-en="Experience across industries" data-sw="Uzoefu Katika Sekta Mbalimbali">Experience across industries</h2>
+        <p data-en="From hospitality to healthcare, every build starts with understanding how your industry actually works — not a template stretched to fit." data-sw="Kutoka ukarimu hadi afya, kila mradi unaanza kwa kuelewa jinsi sekta yako inavyofanya kazi — sio kigezo kilichobanwa tu kufaa.">From hospitality to healthcare, every build starts with understanding how your industry actually works — not a template stretched to fit.</p>
+      </div>
+      <div class="sectors-grid">
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <h4 data-en="Hospitality &amp; Tourism" data-sw="Ukarimu na Utalii">Hospitality &amp; Tourism</h4>
+          <p data-en="Booking-ready sites for lodges, hotels, and tour operators — built to convert browsers into guests." data-sw="Tovuti tayari kwa uhifadhi kwa mahoteli, nyumba za wageni, na kampuni za utalii — zilizoundwa kubadili watazamaji kuwa wageni.">Booking-ready sites for lodges, hotels, and tour operators — built to convert browsers into guests.</p>
+          <p class="sector-note" data-en="Typical needs: galleries, availability &amp; enquiry forms, multilingual pages." data-sw="Mahitaji ya kawaida: picha, fomu za uhifadhi na maswali, kurasa za lugha nyingi.">Typical needs: galleries, availability &amp; enquiry forms, multilingual pages.</p>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+          </div>
+          <h4 data-en="Retail &amp; E-Commerce" data-sw="Rejareja na Biashara Mtandaoni">Retail &amp; E-Commerce</h4>
+          <p data-en="Product-first layouts and simple checkout flows for shops that sell in-store and online." data-sw="Mipangilio inayoangazia bidhaa na njia rahisi za malipo kwa maduka yanayouza dukani na mtandaoni.">Product-first layouts and simple checkout flows for shops that sell in-store and online.</p>
+          <p class="sector-note" data-en="Typical needs: catalogues, WhatsApp ordering, inventory-friendly pages." data-sw="Mahitaji ya kawaida: orodha za bidhaa, maagizo ya WhatsApp, kurasa rafiki kwa bidhaa.">Typical needs: catalogues, WhatsApp ordering, inventory-friendly pages.</p>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4.5-4 8-8 11Z"/></svg>
+          </div>
+          <h4 data-en="NGOs &amp; Development" data-sw="Mashirika Yasiyo ya Kiserikali na Maendeleo">NGOs &amp; Development</h4>
+          <p data-en="Clear, credible sites that communicate impact to donors, partners, and the communities you serve." data-sw="Tovuti wazi na za kuaminika zinazowasilisha matokeo kwa wafadhili, washirika, na jamii unazohudumia.">Clear, credible sites that communicate impact to donors, partners, and the communities you serve.</p>
+          <p class="sector-note" data-en="Typical needs: programme pages, reports, donation &amp; contact routing." data-sw="Mahitaji ya kawaida: kurasa za mipango, ripoti, michango na mawasiliano.">Typical needs: programme pages, reports, donation &amp; contact routing.</p>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+          </div>
+          <h4 data-en="Finance &amp; Professional Services" data-sw="Fedha na Huduma za Kitaalamu">Finance &amp; Professional Services</h4>
+          <p data-en="Trust-first design for banks, SACCOS, law firms, and consultancies where credibility comes first." data-sw="Muundo unaojenga imani kwa mabenki, SACCOS, kampuni za sheria, na washauri ambapo uaminifu unatanguliwa.">Trust-first design for banks, SACCOS, law firms, and consultancies where credibility comes first.</p>
+          <p class="sector-note" data-en="Typical needs: service pages, compliance-friendly copy, secure forms." data-sw="Mahitaji ya kawaida: kurasa za huduma, maudhui yanayozingatia kanuni, fomu salama.">Typical needs: service pages, compliance-friendly copy, secure forms.</p>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4 data-en="Education" data-sw="Elimu">Education</h4>
+          <p data-en="Informative, parent- and student-friendly sites for schools, colleges, and training institutes." data-sw="Tovuti zenye taarifa, rafiki kwa wazazi na wanafunzi kwa shule, vyuo, na taasisi za mafunzo.">Informative, parent- and student-friendly sites for schools, colleges, and training institutes.</p>
+          <p class="sector-note" data-en="Typical needs: admissions info, calendars, staff &amp; programme directories." data-sw="Mahitaji ya kawaida: taarifa za udahili, kalenda, orodha za wafanyakazi na mipango.">Typical needs: admissions info, calendars, staff &amp; programme directories.</p>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          </div>
+          <h4 data-en="Healthcare" data-sw="Afya">Healthcare</h4>
+          <p data-en="Clean, reassuring sites for clinics and practices where visitors need answers fast." data-sw="Tovuti safi na za kutuliza kwa kliniki na hospitali ndogo ambapo wageni wanahitaji majibu haraka.">Clean, reassuring sites for clinics and practices where visitors need answers fast.</p>
+          <p class="sector-note" data-en="Typical needs: services, doctor profiles, appointment enquiry forms." data-sw="Mahitaji ya kawaida: huduma, wasifu wa madaktari, fomu za miadi.">Typical needs: services, doctor profiles, appointment enquiry forms.</p>
+        </div>
+
+      </div>
+      <p class="sectors-footnote" data-en="Don't see your industry listed? Tell us about your business — we'll show you how a DigiDocs build could work for it." data-sw="Hukuoni sekta yako hapa? Tuambie kuhusu biashara yako — tutakuonyesha jinsi mradi wa DigiDocs unavyoweza kufaa kwako.">Don't see your industry listed? Tell us about your business — we'll show you how a DigiDocs build could work for it.</p>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="wrap">
@@ -1235,7 +1328,7 @@
           <h4 data-en="Not sure yet? Get a free website audit." data-sw="Bado huna uhakika? Pata ukaguzi wa bure wa tovuti.">Not sure yet? Get a free website audit.</h4>
           <p data-en="We'll review your current site (or your idea, if you're starting fresh) and tell you honestly which package actually fits — no pressure, no obligation." data-sw="Tutakagua tovuti yako ya sasa (au wazo lako, kama unaanza upya) na kukuambia kwa uwazi kifurushi kinachokufaa — bila shinikizo wala masharti.">We'll review your current site (or your idea, if you're starting fresh) and tell you honestly which package actually fits — no pressure, no obligation.</p>
         </div>
-        <a href="#contact" class="btn btn-primary" data-en="get my free web audit" data-sw="Nipatie Ukaguzi Bure">Free Website Analysis</a>
+        <a href="#contact" class="btn btn-primary" data-en="Get my free audit" data-sw="Nipatie Ukaguzi Bure">Get my free audit</a>
       </div>
 
       <div class="price-grid">
@@ -1266,7 +1359,7 @@
             <li data-en="Topic-routed inquiry form" data-sw="Fomu ya maswali inayoelekeza kwa mada">Topic-routed inquiry form</li>
             <li data-en="Basic on-page SEO setup" data-sw="Mipangilio ya msingi ya SEO">Basic on-page SEO setup</li>
             <li data-en="Map, hours & location block" data-sw="Ramani, saa za kazi na eneo">Map, hours &amp; location block</li>
-            <li data-en="10 days of post-launch support" data-sw="Siku 10 za msaada baada ya uzinduzi">10 days of post-launch support</li>
+            <li data-en="30 days of post-launch support" data-sw="Siku 30 za msaada baada ya uzinduzi">30 days of post-launch support</li>
           </ul>
           <a href="#contact" class="btn btn-primary" data-en="Start with Growth" data-sw="Anza na Growth">Start with Growth</a>
         </div>
@@ -1275,7 +1368,7 @@
           <p class="tier-name" data-en="PRO" data-sw="PRO">PRO</p>
           <h3 data-en="Operations" data-sw="Uendeshaji">Operations</h3>
           <p class="who" data-en="For a business with more moving parts — bookings, sales, or inventory to run." data-sw="Kwa biashara yenye shughuli nyingi zaidi — miadi, mauzo, au bidhaa za kusimamia.">For a business with more moving parts — bookings, sales, or inventory to run.</p>
-          <div class="price">1,800,000+ <small>TZS</small></div>
+          <div class="price">1,800,000 <small>TZS</small></div>
           <p class="price-note" data-en="One-time · delivered in 10 working days · VAT inclusive" data-sw="Malipo mara moja · uwasilishaji ndani ya siku 10 · VAT imejumuishwa">One-time · delivered in 10 working days · VAT inclusive</p>
           <ul class="feature-list">
             <li data-en="Everything in Growth" data-sw="Kila kitu kilichopo Growth">Everything in Growth</li>
@@ -1346,7 +1439,7 @@
           <p class="tier-name" data-en="PRO" data-sw="PRO">PRO</p>
           <h3 data-en="Operations Care" data-sw="Operations Care">Operations Care</h3>
           <p class="who" data-en="For a site running real operations — bookings, sales, or inventory — that can't afford downtime." data-sw="Kwa tovuti inayoendesha shughuli halisi — miadi, mauzo, au bidhaa — isiyoweza kumudu muda wa kusimama.">For a site running real operations — bookings, sales, or inventory — that can't afford downtime.</p>
-          <div class="price">375,000+ <small>TZS <span data-en="/ month" data-sw="/ mwezi">/ month</span></small></div>
+          <div class="price">375,000 <small>TZS <span data-en="/ month" data-sw="/ mwezi">/ month</span></small></div>
           <p class="price-note" data-en="Billed monthly · VAT inclusive · cancel with 30 days' notice" data-sw="Malipo kila mwezi · VAT imejumuishwa · ghairi kwa taarifa ya siku 30">Billed monthly · VAT inclusive · cancel with 30 days' notice</p>
           <ul class="feature-list">
             <li data-en="Everything in Growth Care" data-sw="Kila kitu kilichopo Growth Care">Everything in Growth Care</li>
@@ -1535,6 +1628,7 @@
     </p>
     <div class="footer-links">
       <a href="#mission" data-en="About" data-sw="Kuhusu">About</a>
+      <a href="#sectors" data-en="Sectors" data-sw="Sekta">Sectors</a>
       <a href="#pricing" data-en="Pricing" data-sw="Bei">Pricing</a>
       <a href="#process" data-en="Process" data-sw="Mchakato">Process</a>
       <a href="#testimonials" data-en="Testimonials" data-sw="Maoni">Testimonials</a>
