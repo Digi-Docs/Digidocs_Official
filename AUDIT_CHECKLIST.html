@@ -16,6 +16,7 @@
     --signal:#e8c93a;
     --signal-soft: rgba(232,201,58,0.14);
     --ok:#2f8a78;
+    --err:#e0645a;
   }
   *{box-sizing:border-box;}
   body{
@@ -114,6 +115,12 @@
     display:flex;
     gap:12px;
     align-items:flex-start;
+    cursor:pointer;
+    user-select:none;
+    transition:background .12s ease, border-color .12s ease;
+  }
+  .item:hover{
+    border-color: rgba(232,201,58,0.4);
   }
   .item input[type=checkbox]{
     margin-top:3px;
@@ -132,8 +139,7 @@
     background:rgba(47,138,120,0.1);
   }
   .item.checked label{
-    text-decoration:line-through;
-    opacity:.6;
+    color:var(--muted);
   }
 
   .workflow{
@@ -153,6 +159,121 @@
     font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
     color:var(--signal);
     font-weight:700;
+  }
+
+  /* ---- lead capture form ---- */
+  .lead-form{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--signal);
+    border-radius:10px;
+    padding:28px 26px 30px;
+  }
+  .lead-form > p{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 20px;
+    line-height:1.6;
+  }
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .form-field{display:flex;flex-direction:column;gap:6px;}
+  .form-field.full{grid-column:1 / -1;}
+  .form-field label{
+    font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .form-field .optional-tag{
+    color:var(--muted-2);
+    text-transform:none;
+    font-family:'Inter',sans-serif;
+    letter-spacing:0;
+  }
+  .form-field input{
+    background:var(--ink);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:11px 13px;
+    color:var(--text);
+    font-size:15px;
+    font-family:inherit;
+    outline:none;
+    transition:border-color .15s ease;
+  }
+  .form-field input:focus{
+    border-color:var(--signal);
+  }
+  .form-field input:invalid:not(:placeholder-shown){
+    border-color:var(--err);
+  }
+  .hidden-field{
+    position:absolute;
+    left:-9999px;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+  .submit-btn{
+    width:100%;
+    background:var(--signal);
+    color:#141200;
+    border:none;
+    border-radius:6px;
+    padding:14px 20px;
+    font-size:15px;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+    transition:background .2s ease, opacity .2s ease;
+  }
+  .submit-btn:hover{background:#f0d451;}
+  .submit-btn:disabled{opacity:.6;cursor:not-allowed;}
+  .form-note{
+    margin-top:12px;
+    font-size:12.5px;
+    color:var(--muted-2);
+    text-align:center;
+  }
+  .form-error{
+    margin-top:14px;
+    padding:12px 14px;
+    background:rgba(224,100,90,0.12);
+    border:1px solid rgba(224,100,90,0.4);
+    border-radius:6px;
+    color:#f2a9a3;
+    font-size:14px;
+  }
+  .form-success{
+    text-align:center;
+    padding:20px 10px;
+  }
+  .form-success .check-mark{
+    width:48px;height:48px;
+    margin:0 auto 14px;
+    border-radius:50%;
+    background:var(--ok);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+  }
+  .form-success h3{
+    margin:0 0 8px;
+    font-size:19px;
+    color:var(--text);
+  }
+  .form-success p{
+    margin:0;
+    color:var(--muted);
+    font-size:14.5px;
+    max-width:50ch;
+    margin:0 auto;
+    line-height:1.6;
   }
 
   .footer-note{
@@ -240,6 +361,9 @@
     .workflow{padding:20px 18px;}
     .workflow li{font-size:15px;line-height:1.55;}
 
+    .lead-form{padding:22px 18px 26px;}
+    .form-grid{grid-template-columns:1fr;gap:14px;}
+
     .tool-footer p{font-size:14.5px;}
     .tool-footer .cta-link{width:100%;justify-content:center;padding:14px 20px;}
     .footer-note{font-size:12.5px;}
@@ -265,7 +389,7 @@
     <p data-i18n="welcome-desc">Discover what defects, weaknesses, and opportunities your website has. Use this checklist to review your site across five critical areas — then see how a professional redesign can transform it.</p>
   </div>
 
-  <section>
+  <section data-section-title="Technical &amp; Performance">
     <div class="sec-head"><span class="sec-num">01</span><h2 data-i18n="s1-title">Technical &amp; Performance</h2></div>
     <div class="grid">
       <div class="item"><input type="checkbox"><label data-i18n="s1-1">Slow load times (check PageSpeed Insights or GTmetrix — over 3–4 seconds is a strong signal)</label></div>
@@ -277,7 +401,7 @@
     </div>
   </section>
 
-  <section>
+  <section data-section-title="Design &amp; UX">
     <div class="sec-head"><span class="sec-num">02</span><h2 data-i18n="s2-title">Design &amp; UX</h2></div>
     <div class="grid">
       <div class="item"><input type="checkbox"><label data-i18n="s2-1">Dated visual style: small fonts, drop shadows, stock clipart, low-res images</label></div>
@@ -289,7 +413,7 @@
     </div>
   </section>
 
-  <section>
+  <section data-section-title="Content">
     <div class="sec-head"><span class="sec-num">03</span><h2 data-i18n="s3-title">Content</h2></div>
     <div class="grid">
       <div class="item"><input type="checkbox"><label data-i18n="s3-1">Old copyright date in the footer</label></div>
@@ -299,7 +423,7 @@
     </div>
   </section>
 
-  <section>
+  <section data-section-title="SEO &amp; Discoverability">
     <div class="sec-head"><span class="sec-num">04</span><h2 data-i18n="s4-title">SEO &amp; Discoverability</h2></div>
     <div class="grid">
       <div class="item"><input type="checkbox"><label data-i18n="s4-1">Missing or generic meta titles/descriptions</label></div>
@@ -310,7 +434,7 @@
     </div>
   </section>
 
-  <section>
+  <section data-section-title="Conversion &amp; Business Signals">
     <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="s5-title">Conversion &amp; Business Signals</h2></div>
     <div class="grid">
       <div class="item"><input type="checkbox"><label data-i18n="s5-1">No clear contact form, or forms that don't work</label></div>
@@ -333,6 +457,49 @@
   </section>
 
   <p class="footer-note" data-i18n="footer">Tick items as you go — the more boxes checked, the stronger the case for a remodel.</p>
+
+  <section class="lead-form" id="lead-form-section">
+    <div class="sec-head"><span class="sec-num">06</span><h2 data-i18n="form-title">Get Your Full Audit Report</h2></div>
+    <p data-i18n="form-desc">Fill in your details below and we'll send your personalised audit findings and a plan to fix them. Fields marked * are required.</p>
+
+    <form name="website-audit" id="auditForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="website-audit" />
+      <p class="hidden-field">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      <!-- populated by JS with the checked audit items before submit -->
+      <textarea name="audit-summary" id="audit-summary" class="hidden-field" readonly></textarea>
+
+      <div class="form-grid">
+        <div class="form-field full">
+          <label for="f-name" data-i18n="f-name-label">Full Name *</label>
+          <input type="text" id="f-name" name="name" required>
+        </div>
+        <div class="form-field">
+          <label for="f-email" data-i18n="f-email-label">Email Address *</label>
+          <input type="email" id="f-email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="f-website" data-i18n="f-website-label">Website URL *</label>
+          <input type="text" id="f-website" name="website" placeholder="https://yoursite.co.tz" required>
+        </div>
+        <div class="form-field full">
+          <label for="f-phone"><span data-i18n="f-phone-label">Phone Number</span> <span class="optional-tag" data-i18n="f-optional">(optional, but recommended)</span></label>
+          <input type="tel" id="f-phone" name="phone" placeholder="+255...">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn" data-i18n="f-submit">Submit Audit Details</button>
+      <p class="form-note" data-i18n="f-note">We only use these details to send you your audit results and follow up about the redesign.</p>
+      <div class="form-error" id="form-error" style="display:none" data-i18n="f-error">Something went wrong sending your details. Please try again or contact us directly.</div>
+    </form>
+
+    <div class="form-success" id="form-success" style="display:none">
+      <div class="check-mark">✓</div>
+      <h3 data-i18n="f-success-title">Thank you!</h3>
+      <p data-i18n="f-success-desc">We've received your audit details and will reach out shortly with your results.</p>
+    </div>
+  </section>
 
   <div class="tool-footer">
     <p><span data-i18n="footer-from">This free audit tool is a resource from</span> <strong>DigiDocs</strong></p>
@@ -387,6 +554,18 @@ const translations = {
     "wf-5": "Try filling out any contact form",
     "wf-6": "Compare the site to 2–3 competitors' sites",
     footer: "Tick items as you go — the more boxes checked, the stronger the case for a remodel.",
+    "form-title": "Get Your Full Audit Report",
+    "form-desc": "Fill in your details below and we'll send your personalised audit findings and a plan to fix them. Fields marked * are required.",
+    "f-name-label": "Full Name *",
+    "f-email-label": "Email Address *",
+    "f-website-label": "Website URL *",
+    "f-phone-label": "Phone Number",
+    "f-optional": "(optional, but recommended)",
+    "f-submit": "Submit Audit Details",
+    "f-note": "We only use these details to send you your audit results and follow up about the redesign.",
+    "f-error": "Something went wrong sending your details. Please try again or contact us directly.",
+    "f-success-title": "Thank you!",
+    "f-success-desc": "We've received your audit details and will reach out shortly with your results.",
     "footer-from": "This free audit tool is a resource from",
     "footer-about": "We help Tanzanian businesses get professional, mobile-ready websites built in 5 working days.",
     "footer-link": "See our services →"
@@ -434,6 +613,18 @@ const translations = {
     "wf-5": "Jaribu kujaza fomu yoyote ya mawasiliano",
     "wf-6": "Linganisha tovuti na tovuti 2–3 za washindani",
     footer: "Weka alama unapoendelea — kadiri visanduku vinavyojazwa, ndivyo hoja ya kubadilisha tovuti inavyokuwa na nguvu zaidi.",
+    "form-title": "Pata Ripoti Kamili ya Ukaguzi",
+    "form-desc": "Jaza taarifa zako hapa chini nasi tutakutumia matokeo ya ukaguzi wako binafsi pamoja na mpango wa kuyarekebisha. Sehemu zenye alama ya * ni za lazima.",
+    "f-name-label": "Jina Kamili *",
+    "f-email-label": "Barua Pepe *",
+    "f-website-label": "Anwani ya Tovuti (URL) *",
+    "f-phone-label": "Namba ya Simu",
+    "f-optional": "(si lazima, lakini inashauriwa)",
+    "f-submit": "Tuma Taarifa za Ukaguzi",
+    "f-note": "Tunatumia taarifa hizi tu kukutumia matokeo ya ukaguzi wako na kuwasiliana nawe kuhusu ubunifu upya.",
+    "f-error": "Kuna hitilafu wakati wa kutuma taarifa zako. Tafadhali jaribu tena au wasiliana nasi moja kwa moja.",
+    "f-success-title": "Asante!",
+    "f-success-desc": "Tumepokea taarifa zako za ukaguzi na tutawasiliana nawe hivi karibuni na matokeo.",
     "footer-from": "Zana hii ya bure ya ukaguzi ni rasilimali kutoka kwa",
     "footer-about": "Tunatuwezesha biashara za Mtanzania kupata tovuti za uzamili, ambazo zina simu, zinajengwa ndani ya siku 5 za kazi.",
     "footer-link": "Tazama huduma zetu →"
@@ -455,6 +646,67 @@ function setLang(lang){
 document.querySelectorAll('.item').forEach(item=>{
   const cb = item.querySelector('input[type=checkbox]');
   cb.addEventListener('change', ()=> item.classList.toggle('checked', cb.checked));
+  item.addEventListener('click', (e)=>{
+    // if the click landed on the checkbox itself, let its own native
+    // toggle + change event handle it — don't double-toggle
+    if(e.target === cb) return;
+    cb.checked = !cb.checked;
+    cb.dispatchEvent(new Event('change'));
+  });
+});
+
+/* ---- lead capture form: build audit summary + Netlify AJAX submit ---- */
+function buildAuditSummary(){
+  const lines = [];
+  document.querySelectorAll('section[data-section-title]').forEach(sec=>{
+    const secTitle = sec.getAttribute('data-section-title').replace(/&amp;/g, '&');
+    const checkedItems = [];
+    sec.querySelectorAll('.item input[type=checkbox]:checked').forEach(cb=>{
+      checkedItems.push('- ' + cb.nextElementSibling.textContent.trim());
+    });
+    if(checkedItems.length){
+      lines.push(secTitle + ':');
+      lines.push(...checkedItems);
+      lines.push('');
+    }
+  });
+  return lines.length ? lines.join('\n') : 'No issues ticked on the checklist.';
+}
+
+function encodeFormData(data){
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
+const auditForm = document.getElementById('auditForm');
+auditForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  document.getElementById('audit-summary').value = buildAuditSummary();
+
+  const errorBox = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submitBtn');
+  errorBox.style.display = 'none';
+  submitBtn.disabled = true;
+
+  const formData = new FormData(auditForm);
+  const payload = {};
+  formData.forEach((value, key) => { payload[key] = value; });
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: encodeFormData(payload)
+  })
+    .then(() => {
+      auditForm.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    })
+    .catch(() => {
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+    });
 });
 </script>
 </body>
